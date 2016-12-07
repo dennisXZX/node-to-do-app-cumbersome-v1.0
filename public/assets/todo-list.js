@@ -8,18 +8,28 @@ $(document).ready(function(){
 
       // retrieve the add item button
       let item = $('#item');
-      console.log("item: " + item);
+      console.log("item: ", item);
       
-      let todo = {item: item.val()};
-      console.log("todo: " + todo);
+      let todo = {"item": item.val()};
+      console.log("todo: ", todo);
       
       $.ajax({
         type: 'POST',
         url: '/todo',
         data: todo,
-        success: function(data){
-          //do something with the data via front-end framework
-          location.reload();
+        success: function(data){ 
+
+        // refresh the list when the data is passed back from controller 
+        var newList = '<ul>';
+        for (var i = 0; i < data.length; i++) {
+            newList += '<li>' + data[i].item + '</li>';
+        }
+        newList += '</ul>';
+
+        $('#itemList').html(newList);
+
+          // location.reload();
+          // console.log("reload");
         }
       });
 

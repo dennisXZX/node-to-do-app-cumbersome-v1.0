@@ -33,6 +33,10 @@ input[id="searchTerm"]{
     width: 100%;
 }
 
+input:focus, button:focus{
+    outline-width: 0;
+}
+
 button{
     padding: 20px;
     width: 30%;
