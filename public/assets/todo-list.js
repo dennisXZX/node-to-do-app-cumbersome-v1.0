@@ -57,4 +57,21 @@ function refreshList(data){
   newList += '</ul>';
 
   $('#itemList').html(newList);  
+
+
+  // handle the delete item function
+  $('li').on('click', function(){
+
+      // replace space with hyphen on the clicked item
+      let item = $(this).text().replace(/ /g, "-");
+      
+      $.ajax({
+        type: 'DELETE',
+        url: '/todo/' + item,
+        success: function(data){
+          // refresh the list when the data is passed back from controller 
+          refreshList(data);
+        }
+      });
+  });  
 }

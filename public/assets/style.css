@@ -1,6 +1,11 @@
 body{
+    background: #496D89;
     color: #23282e;
     text-align: center;
+}
+
+#logo {
+    color: white;
 }
 
 #todo-table{
