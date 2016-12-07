@@ -1,0 +1,73 @@
+body{
+    color: #23282e;
+    text-align: center;
+}
+
+#todo-table{
+    position: relative;
+    width: 85%;
+    background: lightskyblue;
+    margin: 30px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#todo-table form:after{
+    margin: 0;
+    content: '';
+    display: block;
+    clear: both;
+}
+
+input[id="item"], input[id="searchTerm"]{
+    width: 70%;
+    padding: 20px;
+    background:#181c22;
+    border: 0;
+    float: left;
+    font-size: 20px;
+    color: #989898;
+}
+
+input[id="searchTerm"]{
+    width: 100%;
+}
+
+button{
+    padding: 20px;
+    width: 30%;
+    float: left;
+    background: #23282e;
+    border: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: arial;
+    font-size: 20px;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+li:hover{
+    color: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.1);
+}
+
+#logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 30px;
+}
