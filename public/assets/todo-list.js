@@ -4,7 +4,7 @@ $(document).ready(function(){
   // handle the add item function
   $('form').on('submit', function(){
 
-      // retrieve the add item button
+      // retrieve the add item input
       let item = $('#item');
       let todo = {"item": item.val()};
       
@@ -14,13 +14,7 @@ $(document).ready(function(){
         data: todo,
         success: function(data){ 
           // refresh the list when the data is passed back from controller 
-          let newList = '<ul>';
-          for (let i = 0; i < data.length; i++) {
-              newList += '<li>' + data[i].item + '</li>';
-          }
-          newList += '</ul>';
-
-          $('#itemList').html(newList);
+          refreshList(data);
         }
       });
 
@@ -30,9 +24,6 @@ $(document).ready(function(){
   // handle the delete item function
   $('li').on('click', function(){
 
-    console.log("click item");
-    
-      
       // replace space with hyphen on the clicked item
       let item = $(this).text().replace(/ /g, "-");
       
@@ -40,17 +31,8 @@ $(document).ready(function(){
         type: 'DELETE',
         url: '/todo/' + item,
         success: function(data){
-
-          console.log("inside delete");
-          
           // refresh the list when the data is passed back from controller 
-          let newList = '<ul>';
-          for (let i = 0; i < data.length; i++) {
-              newList += '<li>' + data[i].item + '</li>';
-          }
-          newList += '</ul>';
-
-          $('#itemList').html(newList);
+          refreshList(data);
         }
       });
   });
@@ -66,7 +48,7 @@ $(document).ready(function(){
 });
 
 // this function refreshes the to-do list
-function refreshList(){
+function refreshList(data){
   // refresh the list when the data is passed back from controller 
   var newList = '<ul>';
   for (var i = 0; i < data.length; i++) {

@@ -22,7 +22,6 @@ module.exports = function(app) {
     });
 
     app.delete('/todo/:item', function(req, res){
-        console.log("delete routing");
         
         // filter out the item that need to be deleted
         data = data.filter(function(todoItem){
