@@ -28,6 +28,9 @@ $(document).ready(function(){
           }
         });
 
+        // empty the item input field
+        $("#item").val("");
+
         return false;
     });
 
@@ -52,12 +55,6 @@ function refreshList(data){
         $('<li id=item' + i + '>').text(data[i][itemKey]).appendTo(ul);
     }
 
-    // $.each(data, function(i){
-    //     let itemKey = "item" + count.toString();
-        
-    //     $('<li id=item' + count + '>').text(data[i][itemKey]).appendTo(ul);
-    //     count += 1;
-    // });
     addClickListenerToLiElements();
 }
 
