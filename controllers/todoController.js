@@ -25,9 +25,11 @@ module.exports = function(app) {
         
         // filter out the item that need to be deleted
         data = data.filter(function(todoItem){
-            return todoItem.item.replace(/ /g, '-') !== req.params.item;
+            // return todoItem.item.replace(/ /g, '-') !== req.params.item;
+            return todoItem.item != req.params.item;
         });
+        
         // send back the data array as JSON
         res.json(data);
-    });    
+    });      
 };
