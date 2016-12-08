@@ -1,9 +1,9 @@
 const bodyParser = require('body-parser');
 
 let data = [
-    // {item: 'buy milk'},
-    // {item: 'walk dog'},
-    // {item: 'write some code'},
+    // {item0: 'buy milk'},
+    // {item1: 'walk dog'},
+    // {item2: 'write some code'},
 ];
 
 // initialize the body parser middleware
@@ -24,16 +24,35 @@ module.exports = function(app) {
 
     app.delete('/todo/:itemID', function(req, res){
         
-        // filter out the item that need to be deleted
-        data = data.filter(function(todoItem){
+        console.log("before");
+        console.log(data);
 
-            // console.log("todoItem.item: " + todoItem.item);
-            // console.log("req.params: " + req.params);
-            
-            // return todoItem.attr('id') != req.params.item;
+        // filter out the item that need to be deleted
+        data = data.filter(function(todoItemObj){
+            let objKey = Object.keys(todoItemObj);
+            return objKey != req.params.itemID;
         });
 
+        // regenerate the data array again to array the object key from item0 - itemX
+        let newData = [];
+
+        for(let i=0; i<data.length; i++){
+         
+            // generate a new object
+            let todoItem = {};
+
+            // generate a key for the object
+            itemKey = "item" + i.toString();
+            todoItem[itemKey] = data[i][Object.keys(data[i])];
+            newData.push(todoItem);
+        }
+
+        data = newData;
+
+        console.log("after");
+        console.log(newData);
+
         // send back the data array as JSON
-        res.json(data);
+        res.json(newData);
     });      
 };

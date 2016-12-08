@@ -4,7 +4,7 @@ $(document).ready(function(){
     let idCounter = 0;
 
     // handle the add item function
-    addListenerToLiElements();
+    addClickListenerToLiElements();
 
     $('form').on('submit', function(){
 
@@ -12,8 +12,8 @@ $(document).ready(function(){
         itemKey = "item" + idCounter.toString();
         
         // generate a new object
-        let todo = {};
-        todo[itemKey] = $('#item').val();
+        let todoItem = {};
+        todoItem[itemKey] = $('#item').val();
 
         // update the id counter
         idCounter += 1;
@@ -21,7 +21,7 @@ $(document).ready(function(){
         $.ajax({
           type: 'POST',
           url: '/todo',
-          data: todo,
+          data: todoItem,
           success: function(data){
             // refresh the list when the data (JSON format) is passed back from controller 
             refreshList(data);
@@ -41,22 +41,31 @@ $(document).ready(function(){
 
 // this function refreshes the to-do list
 function refreshList(data){
-    let count = 0;
+
+    // empty the current list
     let ul = $('#itemList')
     ul.empty();
-    $.each(data, function(i){
-        let itemKey = "item" + count.toString();
+
+    for(let i=0; i<data.length; i++){
+        // retrieve the key of the object
+        let itemKey = Object.keys(data[i]);
+        $('<li id=item' + i + '>').text(data[i][itemKey]).appendTo(ul);
+    }
+
+    // $.each(data, function(i){
+    //     let itemKey = "item" + count.toString();
         
-        $('<li id=item' + count + '>').text(data[i][itemKey]).appendTo(ul);
-        count += 1;
-    });
-    addListenerToLiElements();
+    //     $('<li id=item' + count + '>').text(data[i][itemKey]).appendTo(ul);
+    //     count += 1;
+    // });
+    addClickListenerToLiElements();
 }
 
-function addListenerToLiElements() {
+function addClickListenerToLiElements() {
 
     $('li').on('click', function(){
-        var item = $(this).text();
+
+        var item = $(this).attr("id");
         
         $.ajax({
             type: 'DELETE',
