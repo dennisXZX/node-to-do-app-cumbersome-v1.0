@@ -1,10 +1,6 @@
 const bodyParser = require('body-parser');
 
-let data = [
-    // {item0: 'buy milk'},
-    // {item1: 'walk dog'},
-    // {item2: 'write some code'},
-];
+let data = [];
 
 // initialize the body parser middleware
 const urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -23,9 +19,6 @@ module.exports = function(app) {
     });
 
     app.delete('/todo/:itemID', function(req, res){
-        
-        console.log("before");
-        console.log(data);
 
         // filter out the item that need to be deleted
         data = data.filter(function(todoItemObj){
@@ -48,9 +41,6 @@ module.exports = function(app) {
         }
 
         data = newData;
-
-        console.log("after");
-        console.log(newData);
 
         // send back the data array as JSON
         res.json(newData);

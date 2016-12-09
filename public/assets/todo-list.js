@@ -24,7 +24,10 @@ $(document).ready(function(){
           data: todoItem,
           success: function(data){
             // refresh the list when the data (JSON format) is passed back from controller 
-            refreshList(data);
+            regenerateList(data);
+
+            // hide the no item message
+            $("#noItem").hide();
           }
         });
 
@@ -43,12 +46,13 @@ $(document).ready(function(){
 });
 
 // this function refreshes the to-do list
-function refreshList(data){
+function regenerateList(data){
 
     // empty the current list
-    let ul = $('#itemList')
+    let ul = $('#itemList');
     ul.empty();
 
+    // generate a new to-do list
     for(let i=0; i<data.length; i++){
         // retrieve the key of the object
         let itemKey = Object.keys(data[i]);
@@ -62,14 +66,24 @@ function addClickListenerToLiElements() {
 
     $('li').on('click', function(){
 
+        console.log("li clicked");
+        
+
         var item = $(this).attr("id");
         
+        // handle the delete feature
         $.ajax({
             type: 'DELETE',
             url: '/todo/' + item,
             success: function(data){
               // refresh the list when the data is passed back from controller 
-              refreshList(data);
+              regenerateList(data);
+
+              // if the to-do list is empty, display the no item message
+              if(data.length == 0){
+                  $('#noItem').show();
+              }
+            
             }
         });
     });

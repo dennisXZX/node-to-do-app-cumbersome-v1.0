@@ -74,6 +74,7 @@ li{
 li:hover{
     color: rgba(0,0,0,0.6);
     background: rgba(0,0,0,0.1);
+    text-decoration: line-through;
 }
 
 #logo {
