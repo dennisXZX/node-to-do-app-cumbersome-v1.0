@@ -14,6 +14,10 @@ module.exports = function(app) {
     app.post('/todo', urlencodedParser, function(req, res){
         // place the obj {"item0": value} into the data array
         data.push(req.body); 
+        console.log("raw data");
+        
+        console.log(data);
+        
         // send back the data array as JSON
         res.json(data);
     });
@@ -26,7 +30,7 @@ module.exports = function(app) {
             return objKey != req.params.itemID;
         });
 
-        // regenerate the data array again to array the object key from item0 - itemX
+        // regenerate the data array again to arrange the object key from item0 - itemX
         let newData = [];
 
         for(let i=0; i<data.length; i++){

@@ -1,7 +1,7 @@
+let idCounter = 0;
+
 // when the document is ready
 $(document).ready(function(){
-
-    let idCounter = 0;
 
     // handle the add item function
     addClickListenerToLiElements();
@@ -15,9 +15,6 @@ $(document).ready(function(){
         let todoItem = {};
         todoItem[itemKey] = $('#item').val();
 
-        // update the id counter
-        idCounter += 1;
-
         $.ajax({
           type: 'POST',
           url: '/todo',
@@ -25,6 +22,9 @@ $(document).ready(function(){
           success: function(data){
             // refresh the list when the data (JSON format) is passed back from controller 
             regenerateList(data);
+
+            // update the id counter
+            idCounter += 1;            
 
             // hide the no item message
             $("#noItem").hide();
@@ -66,9 +66,6 @@ function addClickListenerToLiElements() {
 
     $('li').on('click', function(){
 
-        console.log("li clicked");
-        
-
         var item = $(this).attr("id");
         
         // handle the delete feature
@@ -76,6 +73,9 @@ function addClickListenerToLiElements() {
             type: 'DELETE',
             url: '/todo/' + item,
             success: function(data){
+
+              idCounter -= 1;
+
               // refresh the list when the data is passed back from controller 
               regenerateList(data);
 
