@@ -13,7 +13,7 @@ $(document).ready(function(){
         
         // generate a new object
         let todoItem = {};
-        todoItem[itemKey] = $('#item').val();
+        todoItem[itemKey] = "● " + $('#item').val();
 
         $.ajax({
           type: 'POST',

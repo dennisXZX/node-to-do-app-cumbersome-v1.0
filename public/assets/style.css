@@ -1,14 +1,21 @@
-body{
+body {
     background: #496D89;
     color: #23282e;
-    text-align: center;
 }
 
 #logo {
+    text-align: center;    
     color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 30px;    
 }
 
-#todo-table{
+#noItem {
+    margin-left: 20px;
+}
+
+#todo-table {
     position: relative;
     width: 85%;
     background: lightskyblue;
@@ -17,14 +24,14 @@ body{
     box-sizing: border-box;
 }
 
-#todo-table form:after{
+#todo-table form:after {
     margin: 0;
     content: '';
     display: block;
     clear: both;
 }
 
-input[id="item"], input[id="searchTerm"]{
+input[id="item"], input[id="searchTerm"] {
     width: 70%;
     padding: 20px;
     background:#181c22;
@@ -34,16 +41,16 @@ input[id="item"], input[id="searchTerm"]{
     color: #989898;
 }
 
-input[id="searchTerm"]{
+input[id="searchTerm"] {
     width: 100%;
     margin-top: 10px;
 }
 
-input:focus, button:focus{
+input:focus, button:focus {
     outline-width: 0;
 }
 
-button{
+button {
     padding: 20px;
     width: 30%;
     float: left;
@@ -55,30 +62,24 @@ button{
     font-size: 20px;
 }
 
-ul{
+ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-li{
+li {
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
     font-family: arial;
     font-size: 20px;
     cursor: pointer;
-    letter-spacing: 1px;
+    letter-spacing: 1px; 
 }
 
-li:hover{
+li:hover {
     color: rgba(0,0,0,0.6);
     background: rgba(0,0,0,0.1);
     text-decoration: line-through;
-}
-
-#logo {
-    font-size: 30px;
-    font-weight: bold;
-    margin-top: 30px;
 }
