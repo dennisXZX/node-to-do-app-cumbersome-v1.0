@@ -8,6 +8,12 @@ $(document).ready(function(){
 
     $('form').on('submit', function(){
 
+        // make sure the to-do item is not empty
+        if($('#item').val() == ""){
+            alert("To do item cannot be empty.")
+            return false;
+        }        
+
         // generate a key for the object
         itemKey = "item" + idCounter.toString();
         
